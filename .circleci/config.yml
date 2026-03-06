@@ -24,11 +24,29 @@ jobs:
           name: opentofu Apply
           command: opentofu apply -auto-approve
 
+  opentofu_destroy:
+    docker:
+      - image: ghcr.io/opentofu/opentofu:1.8.0
+    steps:
+      - checkout
+      - run:
+          name: Initialize opentofu
+          command: opentofu init
+      - run:
+          name: opentofu Destroy
+          command: opentofu destroy -auto-approve
+
 workflows:
-  version: 2
   build_and_deploy:
     jobs:
       - opentofu_plan
       - opentofu_apply:
           requires:
             - opentofu_plan
+      - approve_destroy:
+          type: approval
+          requires:
+            - opentofu_apply
+      - opentofu_destroy:
+          requires:
+            - approve_destroy
