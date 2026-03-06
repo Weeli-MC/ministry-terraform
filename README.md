@@ -45,13 +45,9 @@ The ALB listener is configured on port 80 (HTTP) with no TLS termination. All tr
 
 An attacker on the same network path can perform a man-in-the-middle (MITM) attack. They can intercept session tokens, credentials, or API payloads in transit with no indication to the user.
 
----
-
 **2. Open Security Group Ingress**
 
 The database security group allows inbound PostgreSQL traffic (port 5432) from the entire Internet VPC CIDR (`10.0.0.0/16`) rather than a specific app-tier security group.
-
----
 
 **3. Lack of Web Traffic Filtering**
 
@@ -65,13 +61,9 @@ The Application Load Balancer is open to the public internet without an AWS Web 
 
 A NAT Gateway provides high security for private instances to access the internet, but it incurs a high fixed monthly cost. A NAT Instance would be cheaper but lacks the automatic scaling of the Gateway.
 
----
-
 **2. High Availability**
 
 The Multi-AZ design ensures uptime if a data center fails but increases the management overhead of multiple subnets and route tables.
-
----
 
 **3. Performance**
 
