@@ -83,6 +83,13 @@ Lambda is suitable for this since it's cost effective, requires no servers to ma
 
 ### LLM Usage
 
+**1. Image Analysis**
+
+We can use the LLM to analyse screenshots of the final UI to detect visual bugs like overlapping text or broken layouts that code-only tests often miss. Instead of relying on fragile CSS selectors, the LLM is able to scan and analyse elements such as buttons or icons or text in foreign languages, reducing errors when the underlying code changes.
+
+**2. Reporting and Documentation**
+
+The LLM is also able to process thousands of lines of raw test logs and server metrics to generate informative summary, highlighting root causes of failures rather than just listing errors.
 
 ---
 
