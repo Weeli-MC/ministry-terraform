@@ -7,10 +7,10 @@ jobs:
       - checkout
       - run:
           name: Initialize opentofu
-          command: opentofu init
+          command: tofu init
       - run:
           name: opentofu Plan
-          command: opentofu plan
+          command: tofu plan
 
   opentofu_apply:
     docker:
@@ -19,10 +19,10 @@ jobs:
       - checkout
       - run:
           name: Initialize opentofu
-          command: opentofu init
+          command: tofu init
       - run:
           name: opentofu Apply
-          command: opentofu apply -auto-approve
+          command: tofu apply -auto-approve
 
   opentofu_destroy:
     docker:
@@ -31,10 +31,10 @@ jobs:
       - checkout
       - run:
           name: Initialize opentofu
-          command: opentofu init
+          command: tofu init
       - run:
           name: opentofu Destroy
-          command: opentofu destroy -auto-approve
+          command: tofu destroy -auto-approve
 
 workflows:
   build_and_deploy:
