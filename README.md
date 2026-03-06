@@ -31,7 +31,7 @@ tofu apply
 ```
 
 ### 4. Access the Application
-Once finished, copy the `alb_dns_name` output and paste it into your browser. A **503 Service Unavailable** response confirms the network path is active.
+Once finished, copy the `alb_dns_name` output and paste it into your browser.
 
 ---
 
