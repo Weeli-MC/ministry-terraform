@@ -1,0 +1,34 @@
+version: 2.1
+jobs:
+  opentofu_plan:
+    docker:
+      - image: ghcr.io/opentofu/opentofu:1.8.0
+    steps:
+      - checkout
+      - run:
+          name: Initialize opentofu
+          command: opentofu init
+      - run:
+          name: opentofu Plan
+          command: opentofu plan
+
+  opentofu_apply:
+    docker:
+      - image: ghcr.io/opentofu/opentofu:1.8.0
+    steps:
+      - checkout
+      - run:
+          name: Initialize opentofu
+          command: opentofu init
+      - run:
+          name: opentofu Apply
+          command: opentofu apply -auto-approve
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - opentofu_plan
+      - opentofu_apply:
+          requires:
+            - opentofu_plan
