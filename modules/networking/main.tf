@@ -132,6 +132,13 @@ resource "aws_route_table" "private_rt" {
   tags = { Name = "Private-Route-Table" }
 }
 
+resource "aws_route" "internet_to_workload" {
+  route_table_id         = aws_route_table.public_rt.id
+  destination_cidr_block = var.workload_vpc_cidr
+  transit_gateway_id     = aws_ec2_transit_gateway.main-tgw.id
+  depends_on             = [aws_ec2_transit_gateway_vpc_attachment.internet_attach]
+}
+
 resource "aws_route_table_association" "app_private" {
   subnet_id      = aws_subnet.app.id
   route_table_id = aws_route_table.private_rt.id

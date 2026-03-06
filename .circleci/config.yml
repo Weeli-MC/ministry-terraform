@@ -1,5 +1,17 @@
 version: 2.1
 jobs:
+  opentofu_test:
+    docker:
+      - image: ghcr.io/opentofu/opentofu:1.8.0
+    steps:
+      - checkout
+      - run:
+          name: Initialize opentofu
+          command: tofu init
+      - run:
+          name: Run tests
+          command: tofu test
+
   opentofu_plan:
     docker:
       - image: ghcr.io/opentofu/opentofu:1.8.0
@@ -39,7 +51,10 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
-      - opentofu_plan
+      - opentofu_test
+      - opentofu_plan:
+          requires:
+            - opentofu_test
       - opentofu_apply:
           requires:
             - opentofu_plan

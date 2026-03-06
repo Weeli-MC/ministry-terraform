@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "data_subnets" {
-  name       = "main-data-subnets"
+  name       = "main-data-subnets-ministry"
   subnet_ids = [var.data_subnet_id, var.app_subnet_id]
   tags       = { Name = "Aurora-Subnet-Group" }
 }
