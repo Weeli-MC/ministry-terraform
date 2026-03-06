@@ -1,4 +1,4 @@
-## 🛠️ Setup Instructions
+## Setup Instructions
 
 Follow these steps to deploy the infrastructure after cloning the repository:
 
