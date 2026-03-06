@@ -6,11 +6,25 @@ variables {
 }
 
 override_resource {
-    target = module.compute.aws_lb.external_alb
-    values = {
-      arn = "arn:aws:elasticloadbalancing:ap-southeast-1:123456789012:loadbalancer/app/external-alb/1234567890abcdef"
-    }
+  target = module.compute.aws_lb.external_alb
+  values = {
+    arn = "arn:aws:elasticloadbalancing:ap-southeast-1:123456789012:loadbalancer/app/external-alb/1234567890abcdef"
   }
+}
+
+override_resource {
+  target = module.compute.aws_lb_target_group.echoserver
+  values = {
+    arn = "arn:aws:elasticloadbalancing:ap-southeast-1:123456789012:targetgroup/echoserver-tg/abcdef1234567890"
+  }
+}
+
+override_resource {
+  target = module.compute.aws_iam_role.ecs_exec
+  values = {
+    arn = "arn:aws:iam::123456789012:role/ministry-ecs-exec-role"
+  }
+}
 
 run "test_networking_outputs_wired_to_compute" {
   command = plan
