@@ -101,7 +101,7 @@ resource "aws_ecs_task_definition" "echoserver" {
 
   container_definitions = jsonencode([{
     name  = "echoserver"
-    image = "k8s.gcr.io/e2e-test-images/echoserver:2.5"
+    image = "registry.k8s.io/e2e-test-images/echoserver:2.5"
     portMappings = [{ containerPort = 8080, protocol = "tcp" }]
   }])
 }
