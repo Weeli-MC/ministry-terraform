@@ -1,19 +1,26 @@
-Setup Instructions (For Collaborators)
-If you have just cloned this repository, follow these steps to deploy:
+## 🛠️ Setup Instructions
 
-Initialize Terraform: Downloads the AWS provider and prepares modules.
+Follow these steps to deploy the infrastructure after cloning the repository:
 
-Bash
+### 1. Initialize Terraform
+First, download the AWS providers and initialize the module tree:
+```bash
 terraform init
-Configure Secrets: - Create a file named terraform.tfvars in the root directory.
+```
 
-Add your database password (this file is ignored by Git for security):
+### 2. Configure Secrets
+Create a file named `terraform.tfvars` in the **root** folder. Add your database password here:
+```hcl
+for example: db_password = "password"
+```
+> **Note:** This file is ignored by Git via `.gitignore` to prevent credential leaks.
 
-Terraform
-db_password = "YourSecurePassword123!"
-Plan and Deploy:
-
-Bash
+### 3. Plan and Deploy
+Review the plan to ensure all modules are connected, then apply the changes:
+```bash
 terraform plan
 terraform apply
-Access the Application: Copy the alb_dns_name from the terminal output into your browser. A 503 Service Unavailable message confirms the network path is active.
+```
+
+### 4. Access the Application
+Once finished, copy the `alb_dns_name` output and paste it into your browser. A **503 Service Unavailable** response confirms the network path is active.
