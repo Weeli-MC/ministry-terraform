@@ -55,9 +55,13 @@ workflows:
       - opentofu_plan:
           requires:
             - opentofu_test
-      - opentofu_apply:
+      - approve_plan:
+          type: approval
           requires:
             - opentofu_plan
+      - opentofu_apply:
+          requires:
+            - approve_plan
       - approve_destroy:
           type: approval
           requires:
